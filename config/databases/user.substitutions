@@ -1,0 +1,6 @@
+# Example substitutions file
+
+file "databases/circle.db" {
+    { user = "CBM" }
+}
+

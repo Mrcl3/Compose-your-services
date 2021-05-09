@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config name="CBM">
+  <pv name="CBM:circle:angle">
+    <description>CBM:circle:angle</description>
+    <enabled>true</enabled>
+    <latching>true</latching>
+    <annunciating>true</annunciating>
+  </pv>
+</config>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<memento show_menu="true" show_statusbar="true" show_tabs="true" show_toolbar="true">
+    <DockStage_MAIN height="1053.0" maximized="true" width="1853.0" x="1987.0" y="27.0">
+        <split horizontal="false" pos="0.5">
+            <split pos="0.5002701242571583">
+                <pane selected="0">
+                    <DockItem_18c98da0_cb02_4dc6_b911_f31e0863c7ec application="probe" pv="CBM:circle:angle"/>
+                </pane>
+                <pane selected="0">
+                    <DockItem_7e813c1e_f726_4a93_a792_205b188f3e22 application="alarm_tree" input_uri="alarm://localhost:29094/CBM"/>
+                </pane>
+            </split>
+            <split pos="0.5002701242571583">
+                <pane selected="0">
+                    <DockItem_0836eef2_1c0c_4ab2_8a14_d6353331d871 application="alarm_area" input_uri="alarm://localhost:29094/CBM"/>
+                </pane>
+                <pane selected="0">
+                    <DockItem_1383fa9b_5a90_432f_a062_59c14191853c application="Alarm Log Table"/>
+                </pane>
+            </split>
+        </split>
+    </DockStage_MAIN>
+</memento>

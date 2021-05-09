@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://java.sun.com/dtd/preferences.dtd">
+<map MAP_XML_VERSION="1.0">
+<entry key="categories" value="Routine, Software Installation, Problem Fixed, Configuration, Target, Other, Elog, Elog Server, Hardware, normal, run information, General info"/>
+<entry key="elog_url" value="http://mcbmviva:8080/mCBM/"/>
+<entry key="password" value=""/>
+<entry key="types" value="Beam, mDAQ, mT0, mSTS, mMUCH, mTRD, mTOF, mRICH, mPSD, General, Hardware, Software, Network, Position, Other, mFLES"/>
+<entry key="username" value=""/>
+</map>

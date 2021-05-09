@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://java.sun.com/dtd/preferences.dtd">
+<map MAP_XML_VERSION="1.0">
+<entry key="annunciator_retention_count" value="1"/>
+<entry key="annunciator_threshold" value="1"/>
+<entry key="automated_action_followup" value="mailto:"/>
+<entry key="automated_email_sender" value="STS alarm notification &lt;m.bajdel@gsi.de&gt;"/>
+<entry key="config_name" value="CBM"/>
+<entry key="config_names" value="CBM"/>
+<entry key="connection_timeout" value="15"/>
+<entry key="nag_period" value="00:01:00"/>
+<entry key="server" value="localhost:29094"/>
+</map>

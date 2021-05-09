@@ -1,0 +1,242 @@
+version: "3.7"
+services:
+  kafkacat:
+    image: confluentinc/cp-kafkacat
+    container_name: kafkacat
+    command: sleep infinity 
+  kafka: 
+    restart: always
+    container_name: kafka
+    depends_on: 
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 0
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENERS: LISTENER_INTERNAL://kafka:29092,LISTENER_HOST://kafka:9092,LISTENER_EXTERNAL://kafka:29094
+      KAFKA_ADVERTISED_LISTENERS: LISTENER_INTERNAL://kafka:29092,LISTENER_HOST://localhost:9092,LISTENER_EXTERNAL://localhost:29094
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: LISTENER_INTERNAL:PLAINTEXT,LISTENER_HOST:PLAINTEXT,LISTENER_EXTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: LISTENER_INTERNAL
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 100
+    image: "confluentinc/cp-enterprise-kafka:5.2.1"
+    ports: 
+      - "9092:9092"
+      - "29094:29094"
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+  kafka-setup:
+    image: confluentinc/cp-kafka:5.1.1
+    container_name: kafka-setup
+    network_mode: host
+    depends_on:
+      - kafka
+      - zookeeper
+    command: "bash -c 'echo Waiting for Kafka to be ready... && \
+                       cub kafka-ready -b localhost:9092 1 20 && \
+                       kafka-topics --create --if-not-exists --zookeeper localhost:2181 --partitions 1 --replication-factor 1 --topic ${SUBSYSTEM} && \
+                       kafka-configs --zookeeper localhost:2181 --entity-type topics --alter --entity-name ${SUBSYSTEM} \
+                       --add-config cleanup.policy=compact,segment.ms=10000,min.cleanable.dirty.ratio=0.01,min.compaction.lag.ms=1000 && \
+                       kafka-topics --create --if-not-exists --zookeeper localhost:2181 --partitions 1 --replication-factor 1 --topic ${SUBSYSTEM}Command && \
+                       kafka-configs --zookeeper localhost:2181 --entity-type topics --alter --entity-name ${SUBSYSTEM}Command \
+                       --add-config cleanup.policy=compact,segment.ms=10000,min.cleanable.dirty.ratio=0.01,min.compaction.lag.ms=1000 && \
+                        kafka-topics --create --if-not-exists --zookeeper localhost:2181 --partitions 1 --replication-factor 1 --topic ${SUBSYSTEM}Talk && \
+                       kafka-configs --zookeeper localhost:2181 --entity-type topics --alter --entity-name ${SUBSYSTEM}Talk \
+                       --add-config cleanup.policy=compact,segment.ms=10000,min.cleanable.dirty.ratio=0.01,min.compaction.lag.ms=1000 \
+                       '"
+    environment:
+      # The following settings are listed here only to satisfy the image's requirements.
+      # We override the image's `command` anyways, hence this container will not start a broker.
+      KAFKA_BROKER_ID: ignored
+      KAFKA_ZOOKEEPER_CONNECT: ignored
+  alarm-server:
+    image: mbajdel/alarm-server
+    restart: always
+    container_name: alarm-server
+    network_mode: host
+    ports:
+      - "25:25"
+    depends_on:
+      - kafka
+    volumes:
+      - "${LOC}/dcs-sts/config/Alarmconfig:/epics/alarm-server/config"
+    #  - "/var/tmp/zoo:/opt/data/zookeeper:rw"
+    #  - "/var/tmp/kafka:/opt/data/kafka-logs:rw"
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+    environment:
+      ZOO_PORT: 2181
+      KAFKA_PORT: 29094
+    command: -settings alarm-server/config/settings.ini -noshell 
+  alarm-logger:
+    build:
+      context: ./alarm-logger
+      dockerfile: Dockerfile
+      args:
+        - SUBSYSTEM=${SUBSYSTEM}     
+    restart: always
+    hostname: cbm
+    container_name: alarm-logger
+    network_mode: host
+    depends_on:
+      - kafka
+      - es
+    environment:
+      ES_PORT: 9202
+      KAFKA_PORT: 29094
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+
+
+  es:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.8.2
+    restart: always
+    container_name: elasticsearch
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - http.cors.enabled=true
+      - http.cors.allow-origin=*
+      - discovery.type=single-node
+    ports:
+      - 9202:9200
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.8.4
+    restart: always 
+    container_name: kibana
+    depends_on:
+        - es
+    ports:
+        - "5602:5601"
+    environment:
+      SERVER_NAME: epics.logging.kibana
+      ELASTICSEARCH_HOSTS: http://es:9200
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+  phoebus:
+    container_name: phoebus
+    restart: always
+    depends_on:
+      - kibana
+      - es 
+      - kafka
+      - kafka-setup
+      - archappl
+      - alarm-server
+      - alarm-logger
+      - web
+    environment:
+      - DISPLAY=$DISPLAY
+      - "/tmp/.X11-unix:/tmp/.X11-unix"
+    expose: 
+      - "4918" 
+    image: "mbajdel/phoebus"
+    network_mode: host
+    volumes: 
+      - "/run/dbus/:/run/dbus/:rw"
+#      - "/dev/shm:/dev/shm"
+      - "${LOC}/dcs-sts/config/Phoebus/.phoebus:/home/cbm/.phoebus"
+      - "${LOC}/dcs-sts/config/Phoebus:/home/cbm/config"
+#      - /etc/group:/etc/group:ro
+#      - /etc/passwd:/etc/passwd:ro
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+    devices:
+      - "/dev/dri"
+      - "/dev/snd"
+    command: -settings settings.ini
+  zookeeper: 
+    environment: 
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+      ZOOKEEPER_CONNECTION_TIMEOUT_MS: 300000
+    container_name: zookeeper
+    image: "confluentinc/cp-zookeeper:5.2.1"
+    ports: 
+      - "2181:2181"
+  exampleioc:
+    container_name: exampleioc
+    volumes: 
+      - "${LOC}/dcs-sts/config/:/config"
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+    restart: always
+    network_mode: "host"
+    image: "paluma.rub.de/panda-ioc"
+    tty: true
+    command: /config/iocBoot/iocExample/st.cmd
+  archappl:
+    container_name: archappl
+    restart: always
+    image: pklaus/archiver-appliance
+    network_mode: host
+    # ^ no, we need to link this container to our example-ioc and redis-db containers
+    ports:
+     - "17665:17665"    
+     - "17668:17668"
+    volumes:
+     - ./storage/sts:/storage/sts
+     - ./storage/mts:/storage/mts
+     - ./storage/lts:/storage/lts
+     - ./storage/logs:/storage/logs
+    stdin_open: true
+    tty: true
+    #entrypoint: /bin/bash /opt/archappl/scripts/start.sh
+    environment:
+      ARCHAPPL_ALL_APPS_ON_ONE_JVM: "true"
+      #EPICS_CA_ADDR_LIST: "127.0.0.1"
+      #EPICS_CA_AUTO_ADDR_LIST: "no"
+      ARCHAPPL_PERSISTENCE_LAYER: "org.epics.archiverappliance.config.persistence.RedisPersistence"
+      ARCHAPPL_PERSISTENCE_LAYER_REDISURL: "redis-db"
+    depends_on:
+     - redis-db
+
+  redis-db:
+    container_name: redis
+    image: redis
+    volumes:
+      - ./storage/db:/data
+    command: redis-server --appendonly yes
+  web:
+    image: mbajdel/saveandrestore
+    container_name: jmasar
+    network_mode: host 
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_JDBCURL: jdbc:postgresql://0.0.0.0:5432/jmasar
+      SPRING_DATASOURCE_USERNAME: jmasar
+      SPRING_DATASOURCE_PASSWORD: jmasar
+      DBENGINE: postgresql
+      SPRING_PROFILES_ACTIVE: development
+ #     EPICS_CA_ADDR_LIST: 192.168.0.1
+  postgres:
+    image: postgres:9.6
+    container_name: postgres
+    network_mode: host
+    restart: always
+    ports:
+      - "5437:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data/pgdata
+    expose:
+      - "5437"
+    environment:
+      POSTGRES_USER: jmasar
+      POSTGRES_PASSWORD: jmasar
+      POSTGRES_DB: jmasar
+      PGDATA: /var/lib/postgresql/data/pgdata
+
+     
+
+
+
+

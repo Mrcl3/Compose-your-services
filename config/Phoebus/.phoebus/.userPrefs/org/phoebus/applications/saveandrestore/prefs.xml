@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://java.sun.com/dtd/preferences.dtd">
+<map MAP_XML_VERSION="1.0">
+<entry key="enableCSVIO" value="false"/>
+<entry key="httpClient.connectTimeout" value="1000"/>
+<entry key="httpClient.readTimeout" value="1000"/>
+<entry key="jmasar.service.url" value="http://localhost:8080"/>
+<entry key="sortSnapshotsTimeReversed" value="false"/>
+<entry key="splitSaveset" value="false"/>
+<entry key="splitSnapshot" value="false"/>
+</map>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://java.sun.com/dtd/preferences.dtd">
+<map MAP_XML_VERSION="1.0">
+<entry key="archives" value="pbraw://0.0.0.0:17665/retrieval/"/>
+<entry key="urls" value="pbraw://0.0.0.0:17665/retrieval/"/>
+<entry key="use_default_archives" value="false"/>
+</map>
