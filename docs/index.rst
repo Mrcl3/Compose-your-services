@@ -11,7 +11,14 @@ Welcome to Containarized Detector Control System's documentation!
    :caption: Contents:
    
    intro
-
+   howto
+   phoebus
+   ioc
+   archiver
+   alarms
+   alarml
+   kibana
+   save
 
 Indices and tables
 ==================

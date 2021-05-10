@@ -1,8 +1,8 @@
-Example of containarized Detector Control System
-===================================
-This Detector Control System is deployed with usage of docker-compose (compose file format 3.7), which is a tool for defining and running multi-container Docker application. This application requires docker engine version 18.06.0+. 
+Example of a containarized Detector Control System
+=====================================================
+This example of a Detector Control System is deployed with use of docker-compose (compose file format 3.7), which is a tool for defining and running multi-container Docker application. This application requires docker engine version 18.06.0+. 
 
-DCS contains most essential blocks (containers) for proper operation of the certain experimental setup:
+DCS contains most essential blocks (containers) for proper operation of an experimental setup:
 
 * Control System Studio (Phoebus)
 * IOC(s)
@@ -18,37 +18,29 @@ DCS contains most essential blocks (containers) for proper operation of the cert
 
 
 Prerequisites 
-------------
+--------------
 
-Docker installation
-------------
+To install Docker on your PC (e.g. Debian), follow instructions at Docker website docker-website_.
 
-To install Docker on your PC, follow instructions at Docker website [Get Docker for linux](https://docs.docker.com/install/linux/docker-ce/debian/) or simply check docker-installation directory.  
+    .. _docker-website: https://docs.docker.com/install/linux/docker-ce/debian/
+    
+To install Docker Compose on your PC, follow instructions at Docker website docker-compose_. 
 
-To install Docker Compose on your PC, follow instructions at Docker website [Get Docker Compose](https://docs.docker.com/compose/install/).
+    .. _docker-compose: https://docs.docker.com/compose/install/
 
-Available versions
-------------
-1. Based on Archive Appliance by Philipp Klaus and Redis database + Save and Restore service (jmasar service + postregsql database)
+What is the purpose?
+------------------------------
 
-To run it use startup script with two arguments describing your system and name of the alarm configuration file which should be in config/Alarmconfig.
-To run the example type:
+This example should serve to show feasibility of using docker and docker-compose for control systems and its practicality. This set of applications has been used in many experimental setups in GSI. There are several advantages of containarizing those applications:
 
-```
-./startup.sh CBM example
-```
+    * user can easily choose which services should be deployed, therefore, it might be useful for small, as well as, bigger experimental setups
+    * configuration is very easy, especially if only few services are used
 
-To exit:
 
-```
-docker-compose -f docker-compose-aa.yml down
-```
 
-Remember that all the service listed in the depends_on line will be deployed subsequently. 
+Issues
+------------------------------
 
-Before deploying, you may want to carefully check the repositories in which you want to store the db files. 
-### Run parameters 
-The most variables are located in the .env file. Without proper *LOC* which points to the location of the dcs in the system, the applications won't work properly. 
 
 
 
