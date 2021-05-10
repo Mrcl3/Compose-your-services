@@ -33,10 +33,13 @@ Available versions
 
 To run it use startup script with two arguments describing your system and name of the alarm configuration file which should be in config/Alarmconfig.
 To run the example type:
+
 ```
 ./startup.sh CBM example
 ```
+
 To exit:
+
 ```
 docker-compose -f docker-compose-aa.yml down
 ```
