@@ -58,7 +58,7 @@ services:
     ports:
       - "25:25"
     depends_on:
-      - kafka
+      - kafka-setup
     volumes:
       - "${LOC}/DCS/config/Alarmconfig:/epics/alarm-server/config"
     #  - "/var/tmp/zoo:/opt/data/zookeeper:rw"
@@ -132,21 +132,21 @@ services:
       - alarm-logger
       - web
     environment:
-      - DISPLAY=$DISPLAY
+      - DISPLAY=unix$DISPLAY
       - "/tmp/.X11-unix:/tmp/.X11-unix"
     expose: 
       - "4918" 
     image: "mbajdel/phoebus"
     network_mode: host
     volumes: 
-      - "/run/dbus/:/run/dbus/:rw"
-#      - "/dev/shm:/dev/shm"
+      - "/dev/shm:/dev/shm"
       - "${LOC}/DCS/config/Phoebus/.phoebus:/home/cbm/.phoebus"
       - "${LOC}/DCS/config/Phoebus:/home/cbm/config"
 #      - /etc/group:/etc/group:ro
 #      - /etc/passwd:/etc/passwd:ro
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
+      - "/dev/snd:/dev/snd"
     devices:
       - "/dev/dri"
       - "/dev/snd"

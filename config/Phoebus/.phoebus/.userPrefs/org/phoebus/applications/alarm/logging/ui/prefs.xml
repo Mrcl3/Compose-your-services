@@ -2,7 +2,7 @@
 <!DOCTYPE map SYSTEM "http://java.sun.com/dtd/preferences.dtd">
 <map MAP_XML_VERSION="1.0">
 <entry key="es_host" value="localhost"/>
-<entry key="es_index" value="CBM_alarms"/>
+<entry key="es_index" value="alarms"/>
 <entry key="es_max_size" value="1000"/>
 <entry key="es_port" value="9202"/>
 <entry key="es_sniff" value="false"/>
