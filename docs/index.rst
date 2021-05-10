@@ -1,4 +1,4 @@
-Detector Control System for mSTS (tested on Debian and Ubuntu)
+Example of containarized Detector Control System
 ===================================
 This Detector Control System is deployed with usage of docker-compose (compose file format 3.7), which is a tool for defining and running multi-container Docker application. This application requires docker engine version 18.06.0+. 
 
@@ -31,23 +31,24 @@ Available versions
 ------------
 1. Based on Archive Appliance by Philipp Klaus and Redis database + Save and Restore service (jmasar service + postregsql database)
 
-To run the second version:
+To run it use startup script with two arguments describing your system and name of the alarm configuration file which should be in config/Alarmconfig.
+To run the example type:
+
 ```
-docker-compose -f docker-compose-aa.yml up <choose-service-to-be-deployed>* 
+./startup.sh CBM example
 ```
+
+To exit:
+
+```
+docker-compose -f docker-compose-aa.yml down
+```
+
 Remember that all the service listed in the depends_on line will be deployed subsequently. 
 
 Before deploying, you may want to carefully check the repositories in which you want to store the db files. 
 ### Run parameters 
-Main repository should be located in the home directory ($HOME should be specified accordingly). 
+The most variables are located in the .env file. Without proper *LOC* which points to the location of the dcs in the system, the applications won't work properly. 
 
-Main repository can be also placed in any other directory, in which case it is necessary to modify the paths in the docker-compose.yaml file.
-
-
-
-Alarm-server 
-
-------------
-To import your alarm-server configuration to the alarm-server container.
 
 
