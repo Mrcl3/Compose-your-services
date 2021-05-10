@@ -60,7 +60,7 @@ services:
     depends_on:
       - kafka
     volumes:
-      - "${LOC}/dcs-sts/config/Alarmconfig:/epics/alarm-server/config"
+      - "${LOC}/DCS/config/Alarmconfig:/epics/alarm-server/config"
     #  - "/var/tmp/zoo:/opt/data/zookeeper:rw"
     #  - "/var/tmp/kafka:/opt/data/kafka-logs:rw"
       - "/etc/localtime:/etc/localtime:ro"
@@ -141,8 +141,8 @@ services:
     volumes: 
       - "/run/dbus/:/run/dbus/:rw"
 #      - "/dev/shm:/dev/shm"
-      - "${LOC}/dcs-sts/config/Phoebus/.phoebus:/home/cbm/.phoebus"
-      - "${LOC}/dcs-sts/config/Phoebus:/home/cbm/config"
+      - "${LOC}/DCS/config/Phoebus/.phoebus:/home/cbm/.phoebus"
+      - "${LOC}/DCS/config/Phoebus:/home/cbm/config"
 #      - /etc/group:/etc/group:ro
 #      - /etc/passwd:/etc/passwd:ro
       - "/etc/localtime:/etc/localtime:ro"
@@ -163,7 +163,7 @@ services:
   exampleioc:
     container_name: exampleioc
     volumes: 
-      - "${LOC}/dcs-sts/config/:/config"
+      - "${LOC}/DCS/config/:/config"
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
     restart: always
