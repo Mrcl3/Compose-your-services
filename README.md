@@ -1,5 +1,4 @@
-# Detector Control System for mSTS (tested on Debian and Ubuntu)
-
+# Detector Control System example 
 This Detector Control System is deployed with usage of docker-compose (compose file format 3.7), which is a tool for defining and running multi-container Docker application. This application requires docker engine version 18.06.0+. 
 
 DCS contains most essential blocks (containers) for proper operation of the certain experimental setup:
@@ -29,19 +28,15 @@ To install Docker Compose on your PC, follow instructions at Docker website [Get
 
 ##Available versions
 
-There are two different versions of this software stack available:
-
-1. The first one features archive engine and postgresql database
-2. The second one is based on Archive Appliance by Philipp Klaus and Redis database + Save and Restore service (jmasar service + postregsql database)
+Based on Archive Appliance by Philipp Klaus and Redis database + Save and Restore service (jmasar service + postregsql database)
 
 To run the second version:
 ```
-docker-compose -f docker-compose-aa.yml up <choose-service-to-be-deployed>* 
+./startup.sh CBM example 
 ```
 Remember that all the service listed in the depends_on line will be deployed subsequently. 
 
 Before deploying, you may want to carefully check the repositories in which you want to store the db files. 
-### Run parameters 
 
 
 
