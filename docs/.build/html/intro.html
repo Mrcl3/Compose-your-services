@@ -1,0 +1,157 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Example of containarized Detector Control System &#8212; Containarized Detector Control System 0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to Containarized Detector Control System’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="example-of-containarized-detector-control-system">
+<h1>Example of containarized Detector Control System<a class="headerlink" href="#example-of-containarized-detector-control-system" title="Permalink to this headline">¶</a></h1>
+<p>This Detector Control System is deployed with usage of docker-compose (compose file format 3.7), which is a tool for defining and running multi-container Docker application. This application requires docker engine version 18.06.0+.</p>
+<p>DCS contains most essential blocks (containers) for proper operation of the certain experimental setup:</p>
+<ul class="simple">
+<li>Control System Studio (Phoebus)</li>
+<li>IOC(s)</li>
+<li>Redis database</li>
+<li>Archiver appliance</li>
+<li>Zookeeper</li>
+<li>Kafka</li>
+<li>Alarm server</li>
+<li>Alarm logger</li>
+<li>Elasticsearch</li>
+<li>Kibana</li>
+<li>Save and Restore service (jmasar + postgresql)</li>
+</ul>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="docker-installation">
+<h2>Docker installation<a class="headerlink" href="#docker-installation" title="Permalink to this headline">¶</a></h2>
+<p>To install Docker on your PC, follow instructions at Docker website [Get Docker for linux](<a class="reference external" href="https://docs.docker.com/install/linux/docker-ce/debian/">https://docs.docker.com/install/linux/docker-ce/debian/</a>) or simply check docker-installation directory.</p>
+<p>To install Docker Compose on your PC, follow instructions at Docker website [Get Docker Compose](<a class="reference external" href="https://docs.docker.com/compose/install/">https://docs.docker.com/compose/install/</a>).</p>
+</div>
+<div class="section" id="available-versions">
+<h2>Available versions<a class="headerlink" href="#available-versions" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Based on Archive Appliance by Philipp Klaus and Redis database + Save and Restore service (jmasar service + postregsql database)</li>
+</ol>
+<p>To run it use startup script with two arguments describing your system and name of the alarm configuration file which should be in config/Alarmconfig.
+To run the example type:</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">./startup.sh</span> <span class="pre">CBM</span> <span class="pre">example</span>
+<span class="pre">`</span></code></p>
+<p>To exit:</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">docker-compose</span> <span class="pre">-f</span> <span class="pre">docker-compose-aa.yml</span> <span class="pre">down</span>
+<span class="pre">`</span></code></p>
+<p>Remember that all the service listed in the depends_on line will be deployed subsequently.</p>
+<p>Before deploying, you may want to carefully check the repositories in which you want to store the db files.
+### Run parameters
+The most variables are located in the .env file. Without proper <em>LOC</em> which points to the location of the dcs in the system, the applications won’t work properly.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Containarized Detector Control System</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Example of containarized Detector Control System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#docker-installation">Docker installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#available-versions">Available versions</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to Containarized Detector Control System’s documentation!</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Marcel Bajdel.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/intro.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
