@@ -122,6 +122,7 @@ services:
   phoebus:
     container_name: phoebus
     restart: always
+    hostname: ${hostname}
     depends_on:
       - kibana
       - es 
@@ -132,13 +133,15 @@ services:
       - alarm-logger
       - web
     environment:
-      - DISPLAY=unix$DISPLAY
-      - "/tmp/.X11-unix:/tmp/.X11-unix"
+      - DISPLAY=$DISPLAY
+      - XAUTHORITY=/home/cbm/.Xauthority
     expose: 
       - "4918" 
     image: "mbajdel/phoebus"
     network_mode: host
     volumes: 
+      - "$HOME/.Xauthority:/home/cbm/.Xauthority"
+      - "/tmp/.X11-unix:/tmp/.X11-unix"
       - "/dev/shm:/dev/shm"
       - "${LOC}/DCS/config/Phoebus/.phoebus:/home/cbm/.phoebus"
       - "${LOC}/DCS/config/Phoebus:/home/cbm/config"
@@ -146,7 +149,6 @@ services:
 #      - /etc/passwd:/etc/passwd:ro
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "/dev/snd:/dev/snd"
     devices:
       - "/dev/dri"
       - "/dev/snd"

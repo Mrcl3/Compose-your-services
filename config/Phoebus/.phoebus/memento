@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <memento show_menu="true" show_statusbar="true" show_tabs="true" show_toolbar="true">
-    <DockStage_MAIN height="1053.0" maximized="true" width="1853.0" x="1987.0" y="27.0">
-        <split horizontal="false" pos="0.5">
-            <split pos="0.5002701242571583">
+    <DockStage_MAIN height="810.0" width="1918.0" x="1920.0" y="135.0">
+        <split horizontal="false" pos="0.5007429420505201">
+            <split pos="0.5005219206680585">
                 <pane selected="0">
-                    <DockItem_40ef5f8d_72cc_48bd_af39_0670e150a87e application="probe" pv="CBM:circle:angle"/>
+                    <DockItem_15e822b0_0468_4c6c_8571_6338a78d3d87 application="probe" pv="CBM:circle:angle"/>
                 </pane>
                 <pane selected="0">
-                    <DockItem_d54e6fe1_e942_45dc_ada4_4eb6d5c70f19 application="alarm_tree" input_uri="alarm://localhost:29094/CBM"/>
+                    <DockItem_7e776447_084e_4bce_a09d_6d491616ca2c application="alarm_tree" input_uri="alarm://localhost:29094/CBMM"/>
                 </pane>
             </split>
-            <split pos="0.5002701242571583">
+            <split pos="0.5">
                 <pane selected="0">
-                    <DockItem_f10c3f57_798c_4c87_b6cc_772e5669d248 application="alarm_area" input_uri="alarm://localhost:29094/CBM"/>
+                    <DockItem_75877e91_83c8_403a_ab1e_3cc3c0a110ae application="annunciator" input_uri="alarm://localhost:29094/CBMM"/>
                 </pane>
-                <pane selected="1">
-                    <DockItem_a9d134a2_17e4_41d4_a092_64f5191f7ecb application="Alarm Log Table"/>
-                    <DockItem_c893d0c5_f315_4cb6_b29f_4c48eff01b7b application="annunciator" input_uri="alarm://localhost:29094/CBM"/>
+                <pane selected="0">
+                    <DockItem_5492c38a_4673_441f_94a7_a22151c86726 application="Alarm Log Table"/>
                 </pane>
             </split>
         </split>
