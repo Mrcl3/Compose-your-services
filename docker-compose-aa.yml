@@ -124,13 +124,13 @@ services:
     restart: always
     hostname: ${hostname}
     depends_on:
-      - kibana
-      - es 
       - kafka
       - kafka-setup
-      - archappl
-      - alarm-server
+      - kibana
+      - es 
       - alarm-logger
+      - alarm-server
+      - archappl
       - web
     environment:
       - DISPLAY=$DISPLAY
@@ -141,7 +141,7 @@ services:
     network_mode: host
     volumes: 
       - "$HOME/.Xauthority:/home/cbm/.Xauthority"
-      - "/tmp/.X11-unix:/tmp/.X11-unix"
+      - "/tmp/.X11-unix:/home/cbm/.X11-unix"
       - "/dev/shm:/dev/shm"
       - "${LOC}/DCS/config/Phoebus/.phoebus:/home/cbm/.phoebus"
       - "${LOC}/DCS/config/Phoebus:/home/cbm/config"
@@ -149,6 +149,7 @@ services:
 #      - /etc/passwd:/etc/passwd:ro
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
+      - "/dev/snd:/dev/snd"
     devices:
       - "/dev/dri"
       - "/dev/snd"
@@ -175,6 +176,7 @@ services:
     command: /config/iocBoot/iocExample/st.cmd
   archappl:
     container_name: archappl
+    hostname: ${hostname}
     restart: always
     image: pklaus/archiver-appliance
     network_mode: host

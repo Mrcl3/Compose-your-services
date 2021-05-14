@@ -5,8 +5,8 @@
 <entry key="annunciator_threshold" value="1"/>
 <entry key="automated_action_followup" value="mailto:"/>
 <entry key="automated_email_sender" value="STS alarm notification &lt;m.bajdel@gsi.de&gt;"/>
-<entry key="config_name" value="CBMM"/>
-<entry key="config_names" value="CBMM"/>
+<entry key="config_name" value="CBM"/>
+<entry key="config_names" value="CBM"/>
 <entry key="connection_timeout" value="15"/>
 <entry key="nag_period" value="00:00:15"/>
 <entry key="server" value="localhost:29094"/>
