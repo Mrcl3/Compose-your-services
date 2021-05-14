@@ -26,11 +26,9 @@ To install Docker on your PC, follow instructions at Docker website [Get Docker 
 
 To install Docker Compose on your PC, follow instructions at Docker website [Get Docker Compose](https://docs.docker.com/compose/install/).
 
-##Available versions
+### Available versions
 
-Based on Archive Appliance by Philipp Klaus and Redis database + Save and Restore service (jmasar service + postregsql database)
-
-To run the second version:
+To run the example:
 ```
 ./startup.sh CBM example 
 ```
