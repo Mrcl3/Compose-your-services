@@ -1,9 +1,11 @@
 #####
 #Edit lines below to create your own configuration, SYS has to be changed only once and has to be present also in the alarm system configuration file
 #####
+from pathlib import Path
 
 #Path to the folder containing all the files
-PATH = "LOC=/home/marcel\n"
+path = Path.home()
+PATH = f"LOC={path}\n"
 #Hostname for containers
 HOST = "hostname=marcel\n"
 # Define docker-compose file to be initialized

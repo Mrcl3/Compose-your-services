@@ -1,24 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <memento show_menu="true" show_statusbar="true" show_tabs="true" show_toolbar="true">
     <DockStage_MAIN height="789.0" width="1851.0" x="67.0" y="114.0">
-        <split horizontal="false" pos="0.5015337423312883">
-            <split pos="0.5002704164413196">
-                <pane selected="0">
-                    <DockItem_d63e893d_79fa_4e34_950c_7987d0cefd78 application="probe" pv="CBM:circle:angle"/>
-                </pane>
-                <pane selected="0">
-                    <DockItem_65eb5dda_940d_4a5b_99ab_6d7df8f174cf application="alarm_tree" input_uri="alarm://localhost:29094/CBM"/>
-                </pane>
-            </split>
-            <split pos="0.5002704164413196">
-                <pane selected="1">
-                    <DockItem_23ea5cae_316a_498c_bb7c_7657ca61a94a application="annunciator" input_uri="alarm://localhost:29094/CBM"/>
-                    <DockItem_ff5d4370_46cb_4767_a22f_82e7ba225f2f application="alarm_area" input_uri="alarm://localhost:29094/CBM"/>
-                </pane>
-                <pane selected="0">
-                    <DockItem_5f5bd22d_f5c8_49d9_81e7_e1a6f5217e0d application="Alarm Log Table"/>
-                </pane>
-            </split>
-        </split>
+        <pane selected="0">
+            <DockItem_f975574e_0f59_4883_a1d2_71cfce3bf9c2 application="probe" pv="CBM:circle:angle"/>
+        </pane>
     </DockStage_MAIN>
 </memento>

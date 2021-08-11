@@ -76,7 +76,7 @@ services:
       args:
         - SUBSYSTEM=${SUBSYSTEM}     
     restart: always
-    hostname: cbm
+    hostname: ${hostname}
     container_name: alarm-logger
     network_mode: host
     depends_on:
