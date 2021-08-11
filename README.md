@@ -26,15 +26,9 @@ To install Docker on your PC, follow instructions at Docker website [Get Docker 
 
 To install Docker Compose on your PC, follow instructions at Docker website [Get Docker Compose](https://docs.docker.com/compose/install/).
 
-### Available versions
+### Howto
 
-To run the example:
-```
-./startup.sh CBM example 
-```
-Remember that all the service listed in the depends_on line will be deployed subsequently. 
-
-Before deploying, you may want to carefully check the repositories in which you want to store the db files. 
+Go to the documentation to see how this example could be initialized.
 
 
 
