@@ -54,6 +54,7 @@ services:
     image: mbajdel/alarm-server
     restart: always
     container_name: alarm-server
+#    hostname: ${hostname}
     network_mode: host
     ports:
       - "25:25"

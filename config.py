@@ -2,12 +2,14 @@
 #Edit lines below to create your own configuration, SYS has to be changed only once and has to be present also in the alarm system configuration file
 #####
 from pathlib import Path
+import getpass
 
 #Path to the folder containing all the files
 path = Path.home()
 PATH = f"LOC={path}\n"
 #Hostname for containers
-HOST = "hostname=marcel\n"
+hostname = getpass.getuser()
+HOST = f"hostname={hostname}\n"
 # Define docker-compose file to be initialized
 FILE = "docker-compose-aa.yml"
 # Define a name for the alarm-server, it will appear in the .env file

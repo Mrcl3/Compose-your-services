@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <memento show_menu="true" show_statusbar="true" show_tabs="true" show_toolbar="true">
     <DockStage_MAIN height="789.0" width="1851.0" x="67.0" y="114.0">
-        <pane selected="0">
-            <DockItem_f975574e_0f59_4883_a1d2_71cfce3bf9c2 application="probe" pv="CBM:circle:angle"/>
+        <pane selected="3">
+            <DockItem_8c81006a_2251_4353_8fa2_e153ed78dda9 application="probe" pv="CBM:circle:angle"/>
+            <DockItem_a5b8ccd2_ca4a_4a55_80fc_0e86b1f635ba application="alarm_area" input_uri="alarm://localhost:29094/STS"/>
+            <DockItem_b401c986_a0b6_43bc_b995_09182fbc2f43 application="Alarm Log Table"/>
+            <DockItem_2f807147_cc3d_4cd0_8e18_a478805545ef COL0="25.0" COL1="240.0" COL2="400.0" COL3="130.0" COL4="130.0" COL5="200.0" COL6="100.0" COL7="130.0" COL8="130.0" DIR="0" POS="0.5008605851979346" SORT="1" application="alarm_table" input_uri="alarm://localhost:29094/STS"/>
         </pane>
     </DockStage_MAIN>
 </memento>
