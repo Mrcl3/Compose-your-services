@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<config name="CBM">
+<config name="STS">
   <pv name="CBM:circle:angle">
     <description>CBM:circle:angle</description>
     <enabled>true</enabled>
