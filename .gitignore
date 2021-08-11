@@ -1,2 +1,3 @@
 storage/
 pgdata/
+__pycache__/
