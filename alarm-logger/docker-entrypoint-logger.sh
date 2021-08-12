@@ -18,8 +18,8 @@ if [ -z "${KAFKA_PORT}" ]; then
 fi
 
 
-wait-for-it -t 0 ${KAFKA_HOST}:${KAFKA_PORT}
-wait-for-it -t 0 ${ES_HOST}:${ES_PORT}
+wait-for-it -t 5 ${KAFKA_HOST}:${KAFKA_PORT}
+wait-for-it -t 5 ${ES_HOST}:${ES_PORT}
 
 sleep 5s
 echo "Creating ES Template" && cd /opt && es_host=${ES_HOST} es_port=${ES_PORT} sh ./create_alarm_template.sh ${SUBSYSTEM}

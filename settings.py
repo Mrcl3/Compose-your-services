@@ -27,24 +27,32 @@ def startup():
     try:
         args1 = "docker-compose -f " + config.FILE + " build"
         args2 = "docker-compose -f " + config.FILE + " up -d"
+        args3 = "docker-compose -f " + config.FILE + " restart alarm-logger"
     # Configure alarm-server match the name and upload the configuration from the config folder
-        args3 = "docker exec -t alarm-server sh -c 'cd alarm-server && ./alarm-server.sh -config " + config.SYS + " -import " + config.CONF + " -settings config/settings.ini'"
+        args4 = "docker exec -t alarm-server sh -c 'cd alarm-server && ./alarm-server.sh -config " + config.SYS + " -import " + config.CONF + " -settings config/settings.ini'"
     # Execute the bash commands ^^
         subprocess.call(args1, shell=True)
-        time.sleep(5)
+        time.sleep(15)
         subprocess.call(args2, shell=True)
-        time.sleep(10)
+        time.sleep(60)
         subprocess.call(args3, shell=True)
+        time.sleep(15)
+        subprocess.call(args4, shell=True)
     except:
     # If an exception is raised stop the containers
         print("Unable to start the containers")
-        args3 = "docker-compose -f " + config.FILE + " down"
-        subprocess.call(args3, shell=True)
+        args = "docker-compose -f " + config.FILE + " down"
+#        args1 = "docker-compose -f " + config.FILELOG + " down"
+        subprocess.call(args, shell=True)
+#        subprocess.call(args1, shell=True)
 
 def stop():
     try:
-        args4 = "docker-compose -f " + config.FILE + " down"
-        subprocess.call(args4, shell=True)
+        print("Unable to start the containers")
+        args = "docker-compose -f " + config.FILE + " down"
+#        args1 = "docker-compose -f " + config.FILELOG + " down"
+        subprocess.call(args, shell=True)
+#        subprocess.call(args1, shell=True)
     except:
         print("Stopping the containers...")
     

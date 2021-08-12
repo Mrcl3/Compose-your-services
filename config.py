@@ -12,6 +12,8 @@ hostname = getpass.getuser()
 HOST = f"hostname={hostname}\n"
 # Define docker-compose file to be initialized
 FILE = "docker-compose-aa.yml"
+# Define docker-compose file for logging to be initialized
+#FILELOG = "docker-compose-log.yml"
 # Define a name for the alarm-server, it will appear in the .env file
 SYS = "STS"
 # Define subsystem for the yml file

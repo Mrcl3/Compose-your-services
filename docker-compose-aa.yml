@@ -32,7 +32,6 @@ services:
     network_mode: host
     depends_on:
       - kafka
-      - zookeeper
     command: "bash -c 'echo Waiting for Kafka to be ready... && \
                        cub kafka-ready -b localhost:9092 1 20 && \
                        kafka-topics --create --if-not-exists --zookeeper localhost:2181 --partitions 1 --replication-factor 1 --topic ${SUBSYSTEM} && \
@@ -54,12 +53,11 @@ services:
     image: mbajdel/alarm-server
     restart: always
     container_name: alarm-server
-#    hostname: ${hostname}
     network_mode: host
     ports:
       - "25:25"
     depends_on:
-      - kafka-setup
+      - phoebus
     volumes:
       - "${LOC}/DCS/config/Alarmconfig:/epics/alarm-server/config"
     #  - "/var/tmp/zoo:/opt/data/zookeeper:rw"
@@ -70,69 +68,15 @@ services:
       ZOO_PORT: 2181
       KAFKA_PORT: 29094
     command: -settings alarm-server/config/settings.ini -noshell 
-  alarm-logger:
-    build:
-      context: ./alarm-logger
-      dockerfile: Dockerfile
-      args:
-        - SUBSYSTEM=${SUBSYSTEM}     
-    restart: always
-    hostname: ${hostname}
-    container_name: alarm-logger
-    network_mode: host
-    depends_on:
-      - kafka
-      - es
-    environment:
-      ES_PORT: 9202
-      KAFKA_PORT: 29094
-    volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-
-
-  es:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.8.2
-    restart: always
-    container_name: elasticsearch
-    environment:
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-      - http.cors.enabled=true
-      - http.cors.allow-origin=*
-      - discovery.type=single-node
-    ports:
-      - 9202:9200
-    volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
-
-  kibana:
-    image: docker.elastic.co/kibana/kibana:6.8.4
-    restart: always 
-    container_name: kibana
-    depends_on:
-        - es
-    ports:
-        - "5602:5601"
-    environment:
-      SERVER_NAME: epics.logging.kibana
-      ELASTICSEARCH_HOSTS: http://es:9200
-    volumes:
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
   phoebus:
     container_name: phoebus
     restart: always
     hostname: ${hostname}
     depends_on:
-      - kafka
       - kafka-setup
-      - kibana
-      - es 
-      - alarm-logger
-      - alarm-server
       - archappl
       - web
+      - exampleioc
     environment:
       - DISPLAY=$DISPLAY
       - XAUTHORITY=/home/cbm/.Xauthority
@@ -198,7 +142,7 @@ services:
       #EPICS_CA_ADDR_LIST: "127.0.0.1"
       #EPICS_CA_AUTO_ADDR_LIST: "no"
       ARCHAPPL_PERSISTENCE_LAYER: "org.epics.archiverappliance.config.persistence.RedisPersistence"
-      ARCHAPPL_PERSISTENCE_LAYER_REDISURL: "redis-db"
+      ARCHAPPL_PERSISTENCE_LAYER_REDISURL: "localhost"
     depends_on:
      - redis-db
 
@@ -222,7 +166,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: jmasar
       DBENGINE: postgresql
       SPRING_PROFILES_ACTIVE: development
- #     EPICS_CA_ADDR_LIST: 192.168.0.1
+#     EPICS_CA_ADDR_LIST: 192.168.0.1
   postgres:
     image: postgres:9.6
     container_name: postgres
@@ -239,6 +183,54 @@ services:
       POSTGRES_PASSWORD: jmasar
       POSTGRES_DB: jmasar
       PGDATA: /var/lib/postgresql/data/pgdata
+
+  alarm-logger:
+    build:
+      context: ./alarm-logger
+      dockerfile: Dockerfile
+      args:
+        - SUBSYSTEM=${SUBSYSTEM}     
+    restart: always
+    hostname: ${hostname}
+    container_name: alarm-logger
+    network_mode: host
+    depends_on:
+      - es
+      - kibana
+    environment:
+      ES_PORT: 9202
+      KAFKA_PORT: 29094
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+  es:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.8.2
+    restart: always
+    container_name: elasticsearch
+#    depends_on:
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - http.cors.enabled=true
+      - http.cors.allow-origin=*
+      - discovery.type=single-node
+    ports:
+      - 9202:9200
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.8.4
+    restart: always 
+    container_name: kibana
+    ports:
+        - "5602:5601"
+    environment:
+      SERVER_NAME: epics.logging.kibana
+      ELASTICSEARCH_HOSTS: http://es:9200
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
 
      
 
