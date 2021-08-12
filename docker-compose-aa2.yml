@@ -54,8 +54,8 @@ services:
     restart: always
     container_name: alarm-server
     network_mode: host
-#    ports:
-#      - "25:25"
+    ports:
+      - "25:25"
     depends_on:
       - phoebus
     volumes:
@@ -125,9 +125,10 @@ services:
     restart: always
     image: pklaus/archiver-appliance
     network_mode: host
-#    ports:
-#     - "17665:17665"    
-#     - "17668:17668"
+    # ^ no, we need to link this container to our example-ioc and redis-db containers
+    ports:
+     - "17665:17665"    
+     - "17668:17668"
     volumes:
      - ./storage/sts:/storage/sts
      - ./storage/mts:/storage/mts
@@ -139,7 +140,7 @@ services:
     environment:
       ARCHAPPL_ALL_APPS_ON_ONE_JVM: "true"
       #EPICS_CA_ADDR_LIST: "127.0.0.1"
-      EPICS_CA_AUTO_ADDR_LIST: "yes"
+      #EPICS_CA_AUTO_ADDR_LIST: "no"
       ARCHAPPL_PERSISTENCE_LAYER: "org.epics.archiverappliance.config.persistence.RedisPersistence"
       ARCHAPPL_PERSISTENCE_LAYER_REDISURL: "localhost"
     depends_on:
@@ -155,12 +156,10 @@ services:
     image: mbajdel/saveandrestore
     container_name: jmasar
     network_mode: host 
-#    ports:
-#      - "8080:8080"
+    ports:
+      - "8080:8080"
     depends_on:
       - postgres
-    expose:
-      - "8080"
     environment:
       SPRING_DATASOURCE_JDBCURL: jdbc:postgresql://0.0.0.0:5432/jmasar
       SPRING_DATASOURCE_USERNAME: jmasar
@@ -173,8 +172,8 @@ services:
     container_name: postgres
     network_mode: host
     restart: always
-#    ports:
-#      - "5437:5432"
+    ports:
+      - "5437:5432"
     volumes:
       - ./pgdata:/var/lib/postgresql/data/pgdata
     expose:

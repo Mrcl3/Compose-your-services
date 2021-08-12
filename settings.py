@@ -48,7 +48,7 @@ def startup():
 
 def stop():
     try:
-        print("Unable to start the containers")
+        print("Stopping the containers...")
         args = "docker-compose -f " + config.FILE + " down"
 #        args1 = "docker-compose -f " + config.FILELOG + " down"
         subprocess.call(args, shell=True)
