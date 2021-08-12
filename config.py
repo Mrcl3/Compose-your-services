@@ -1,11 +1,11 @@
 #####
 #Edit lines below to create your own configuration, SYS has to be changed only once and has to be present also in the alarm system configuration file
 #####
-from pathlib import Path
+import os
 import getpass
 
 #Path to the folder containing all the files
-path = Path.home()
+path = os.getcwd()
 PATH = f"LOC={path}\n"
 #Hostname for containers
 hostname = getpass.getuser()
