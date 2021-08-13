@@ -15,7 +15,7 @@ FILE = "docker-compose-aa.yml"
 # Define docker-compose file for logging to be initialized
 #FILELOG = "docker-compose-log.yml"
 # Define a name for the alarm-server, it will appear in the .env file
-SYS = "STS"
+SYS = "CBM"
 # Define subsystem for the yml file
 SUBSYSTEM = "SUBSYSTEM=" + SYS + "\n"
 # Define the configuration for the alarm-server 
