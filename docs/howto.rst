@@ -1,8 +1,8 @@
 Howto
 =====================================================
 
-After cloning the repository it's important to take care of the SYS variable accessible inside the config.py.
-That variable should be also present in the alarm server configuration file.
+After cloning the repository it's important to set SYS variable located in the config.py.
+That variable should be also present in the alarm server configuration file!
 
     .. code:: bash
 
