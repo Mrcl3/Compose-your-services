@@ -19,7 +19,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = u'Containarized Detector Control System'
+project = u'Compose your services'
 copyright = u'2021, Marcel Bajdel'
 author = u'Marcel Bajdel'
 
@@ -108,7 +108,7 @@ html_static_path = ['.static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'ContainarizedDetectorControlSystemdoc'
+htmlhelp_basename = 'Composeyourservicesdoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -135,7 +135,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'ContainarizedDetectorControlSystem.tex', u'Containarized Detector Control System Documentation',
+    (master_doc, 'composeyourservices.tex', u'Compose your services Documentation',
      u'Marcel Bajdel', 'manual'),
 ]
 
@@ -145,7 +145,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'containarizeddetectorcontrolsystem', u'Containarized Detector Control System Documentation',
+    (master_doc, 'composeyourservices', u'Compose your services Documentation',
      [author], 1)
 ]
 
@@ -156,8 +156,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'ContainarizedDetectorControlSystem', u'Containarized Detector Control System Documentation',
-     author, 'ContainarizedDetectorControlSystem', 'One line description of project.',
+    (master_doc, 'composeyourservices', u'Compose your services Documentation',
+     author, 'composeyourservices', 'One line description of project.',
      'Miscellaneous'),
 ]
 
