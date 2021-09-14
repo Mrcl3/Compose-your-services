@@ -1,7 +1,7 @@
-# Detector Control System example 
-This Detector Control System is deployed using docker-compose (compose file format 3.7), which is a tool for defining and running multi-container Docker application. This application requires docker engine version 18.06.0+. 
+# Compose your services 
+These services are  deployed using docker-compose (compose file format 3.7), which is a tool for defining and running multi-container Docker application. This application requires docker engine version 18.06.0+. 
 
-DCS contains most essential blocks (containers) for proper operation of the certain experimental setup:
+This example contains most essential blocks (containers) for proper operation of the certain experimental setup:
 
 * Control System Studio (Phoebus)
 * Example IOC
