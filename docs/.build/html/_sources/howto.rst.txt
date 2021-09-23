@@ -1,24 +1,23 @@
 Howto
 =====================================================
 
-After cloning the repository it's important to adjust the environment variables located in the .env file (LOC and SUBSYSTEM).
-The first of them points to the directory to which you've downloaded the DCS.
-Second one assigns names to kafka topics and serves as a configuration name for alarm-server.
-
-To run all included services use startup script with two arguments describing your subsystem and name of the alarm configuration file which should be located in config/Alarmconfig folder.
-To run the example type:
+After cloning the repository it's important to set SYS variable located in the config.py.
+That variable should be also present in the alarm server configuration file!
 
     .. code:: bash
 
-        ./startup.sh CBM example
-        
-        
-To stop:
+	usage: startup.py [-h] [--start] [--stop]
 
+	This script allows to build/stop all the containers. This script will work
+	properly if the subsystem name matches the alarm server configuration file
 
-    .. code:: bash
+	optional arguments:
+  	-h, --help  show this help message and exit
+  	--start     Start the containers
+  	--stop      Stop the containers
 
-        docker-compose -f docker-compose-aa.yml down
+	All is well that ends well.
+
 
 
 Remember that all the service listed in the depends_on line will be deployed subsequently. That's why it's important to carefully choose the services you want to deploy.

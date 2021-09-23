@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<memento show_menu="true" show_statusbar="true" show_tabs="true" show_toolbar="true">
-    <DockStage_MAIN height="789.0" width="1848.0" x="1987.0" y="142.0">
+<memento last_opened_file="/home/cbm/config/archiver.bob" show_menu="true" show_statusbar="true" show_tabs="true" show_toolbar="true">
+    <DockStage_MAIN height="789.0" width="1848.0" x="67.0" y="106.0">
         <split horizontal="false" pos="0.49846625766871167">
             <split pos="0.5">
                 <pane selected="0">
-                    <DockItem_4777df6d_488f_4a8e_b4f1_e870a7b8e389 application="probe" pv="CBM:circle:angle"/>
+                    <DockItem_7bdabe18_7036_42eb_a9c7_d587ddf2f4a8 application="probe" pv="CBM:circle:angle"/>
                 </pane>
                 <pane selected="0">
-                    <DockItem_a5d1a893_7412_42e9_bf3e_d803411729e5 application="alarm_area" input_uri="alarm://localhost:29094/CBM"/>
+                    <DockItem_7353c131_743d_4504_a54a_8a813a977968 application="alarm_area" input_uri="alarm://localhost:29094/CBM"/>
                 </pane>
             </split>
             <split pos="0.5">
                 <pane selected="0">
-                    <DockItem_e9ca7ab0_5016_4321_a8b2_1bbc9c6191e0 COL0="25.0" COL1="240.0" COL2="400.0" COL3="130.0" COL4="130.0" COL5="200.0" COL6="100.0" COL7="130.0" COL8="130.0" DIR="0" POS="0.5" SORT="1" application="alarm_table" input_uri="alarm://localhost:29094/CBM"/>
+                    <DockItem_5a5ac345_1f11_4831_a467_cab65fd728b4 COL0="25.0" COL1="240.0" COL2="400.0" COL3="130.0" COL4="130.0" COL5="200.0" COL6="100.0" COL7="130.0" COL8="130.0" DIR="0" POS="0.5" SORT="1" application="alarm_table" input_uri="alarm://localhost:29094/CBM"/>
                 </pane>
                 <pane selected="0">
-                    <DockItem_1a559c4f_f14a_42b1_99dd_98b07a8f073b application="Alarm Log Table"/>
+                    <DockItem_6793277f_4d1e_4c87_b4bb_eed496bc657a application="Alarm Log Table"/>
                 </pane>
             </split>
         </split>

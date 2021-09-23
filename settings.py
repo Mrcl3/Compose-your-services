@@ -16,7 +16,7 @@ def create_files():
     alarm.close()
     # .env file
     env = open(".env", "w")
-    env_list = [ config.PATH, config.HOST, config.SUBSYSTEM]
+    env_list = [ config.PATH, config.HOST, config.SUBSYSTEM, config.IOC]
     env.writelines(env_list)
     env.close()
 
@@ -34,10 +34,10 @@ def startup():
         subprocess.call(args1, shell=True)
         time.sleep(15)
         subprocess.call(args2, shell=True)
-        time.sleep(60)
-        subprocess.call(args3, shell=True)
         time.sleep(15)
         subprocess.call(args4, shell=True)
+        time.sleep(60)
+        subprocess.call(args3, shell=True)
     except:
     # If an exception is raised stop the containers
         print("Unable to start the containers")
@@ -54,5 +54,21 @@ def stop():
         subprocess.call(args, shell=True)
 #        subprocess.call(args1, shell=True)
     except:
-        print("Stopping the containers...")
+        print("Error occured...")
+        
+def ioc():
+    try:
+        print("Starting the IOC...")
+        args = "docker-compose -f " + config.FILE + " up -d ioc"
+        subprocess.call(args, shell=True)
+    except:
+        print("Error occured...")
+        
+def archiver():
+    try:
+        print("Starting the archiver...")
+        args = "docker-compose -f " + config.FILE + " up -d archappl"
+        subprocess.call(args, shell=True)
+    except:
+        print("Error occured...")
     

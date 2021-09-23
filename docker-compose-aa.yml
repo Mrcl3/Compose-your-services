@@ -76,7 +76,7 @@ services:
       - kafka-setup
       - archappl
       - web
-      - exampleioc
+      - ioc
     environment:
       - DISPLAY=$DISPLAY
       - XAUTHORITY=/home/cbm/.Xauthority
@@ -108,8 +108,8 @@ services:
     image: "confluentinc/cp-zookeeper:5.2.1"
     ports: 
       - "2181:2181"
-  exampleioc:
-    container_name: exampleioc
+  ioc:
+    container_name: ${IOC}
     volumes: 
       - "${LOC}/config/:/config"
       - "/etc/localtime:/etc/localtime:ro"

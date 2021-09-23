@@ -4,6 +4,16 @@
 import os
 import getpass
 
+#####
+#Parameters to be changed
+#####
+#IOC name
+IOCname = "exampleioc"
+# Define a name for the alarm-server, it will appear in the .env file
+SYS = "CBM"
+
+
+#############################################
 #Path to the folder containing all the files
 path = os.getcwd()
 PATH = f"LOC={path}\n"
@@ -14,13 +24,13 @@ HOST = f"hostname={hostname}\n"
 FILE = "docker-compose-aa.yml"
 # Define docker-compose file for logging to be initialized
 #FILELOG = "docker-compose-log.yml"
-# Define a name for the alarm-server, it will appear in the .env file
-SYS = "CBM"
+
 # Define subsystem for the yml file
 SUBSYSTEM = "SUBSYSTEM=" + SYS + "\n"
 # Define the configuration for the alarm-server 
 CONF = "config/example"
-
+#Define the name of the IOC 
+IOC = "IOC=" + IOCname +"\n"
 #####
 #Phoebus settings configuration
 #####

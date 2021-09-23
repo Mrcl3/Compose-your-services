@@ -1,8 +1,8 @@
-Example of a containarized Detector Control System
+Example of a Compose your services
 =====================================================
-This example of a Detector Control System is deployed with use of docker-compose (compose file format 3.7), which is a tool for defining and running multi-container Docker application. This application requires docker engine version 18.06.0+. 
+Compose your services is deployed with use of docker-compose (compose file format 3.7), which is a tool for defining and running multi-container Docker application. This application requires docker engine version 18.06.0+. 
 
-DCS contains most essential blocks (containers) for proper operation of an experimental setup:
+This example contains most essential blocks (containers) for proper operation of an experimental setup:
 
 * Control System Studio (Phoebus)
 * IOC(s)

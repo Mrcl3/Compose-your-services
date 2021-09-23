@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>Display</name>
+  <widget type="tabs" version="2.0.0">
+    <name>Tabs_1</name>
+    <tabs>
+      <tab>
+        <name>Archiver</name>
+        <children>
+          <widget type="webbrowser" version="2.0.0">
+            <name>Web Browser_3</name>
+            <url>http://0.0.0.0:17665/mgmt/ui/index.html</url>
+            <x>18</x>
+            <width>1130</width>
+            <height>670</height>
+          </widget>
+        </children>
+      </tab>
+    </tabs>
+    <width>1360</width>
+    <height>750</height>
+  </widget>
+  <widget type="byte_monitor" version="2.0.0">
+    <name>Byte Monitor</name>
+    <x>790</x>
+    <y>810</y>
+    <width>10</width>
+    <height>10</height>
+  </widget>
+</display>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://java.sun.com/dtd/preferences.dtd">
 <map MAP_XML_VERSION="1.0">
-<entry key="prop_divider" value="0.744462452728255"/>
+<entry key="prop_divider" value="0.775796866558617"/>
 <entry key="show_coords" value="true"/>
 <entry key="snap_grid" value="true"/>
 <entry key="snap_widgets" value="true"/>
-<entry key="tree_divider" value="0.23068611561318206"/>
+<entry key="tree_divider" value="0.036736898973527825"/>
 </map>
