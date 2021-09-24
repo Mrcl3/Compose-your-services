@@ -31,15 +31,18 @@ Docker compose is included in the latest version of Docker Engine.
 Go to the documentation to see how to start this example.
 
 ```
-usage: startup.py [-h] [--start] [--stop]
+usage: startup.py [-h] [--start] [--stop] [--ioc] [--archiver] [--log [LOG]]
 
 This script allows to build/stop all the containers. This script will work
 properly if the subsystem name matches the alarm server configuration file
 
 optional arguments:
-  -h, --help  show this help message and exit
-  --start     Start the containers
-  --stop      Stop the containers
+  -h, --help   show this help message and exit
+  --start      Start the containers
+  --stop       Stop the containers
+  --ioc        Start the IOC
+  --archiver   Start the archiver
+  --log [LOG]  Specify the service name (not the container name)
 
 All is well that ends well.
 ```

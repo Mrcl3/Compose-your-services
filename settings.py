@@ -16,7 +16,7 @@ def create_files():
     alarm.close()
     # .env file
     env = open(".env", "w")
-    env_list = [ config.PATH, config.HOST, config.SUBSYSTEM, config.IOC]
+    env_list = [ config.PATH, config.HOST, config.SUBSYSTEM, config.IOC, config.IOCp]
     env.writelines(env_list)
     env.close()
 
@@ -71,4 +71,12 @@ def archiver():
         subprocess.call(args, shell=True)
     except:
         print("Error occured...")
-    
+def logs(arg):
+    try:
+        print("Checking the logs...")
+        args = "docker-compose -f " + config.FILE + " logs --follow " + arg
+        print(args)
+        subprocess.call(args, shell=True)
+    except:
+        print("Error occured..")
+        

@@ -9,8 +9,11 @@ import getpass
 #####
 #IOC name
 IOCname = "exampleioc"
+#st.cmd file path
+IOCpath = "/config/iocBoot/iocExample/st.cmd"
 # Define a name for the alarm-server, it will appear in the .env file
 SYS = "CBM"
+# Paths for STS, MTS and LTS Archiver appliance and logs
 
 
 #############################################
@@ -31,6 +34,8 @@ SUBSYSTEM = "SUBSYSTEM=" + SYS + "\n"
 CONF = "config/example"
 #Define the name of the IOC 
 IOC = "IOC=" + IOCname +"\n"
+#IOCpath for env file
+IOCp = "iocpath=" + IOCpath + "\n"
 #####
 #Phoebus settings configuration
 #####

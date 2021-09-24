@@ -118,7 +118,7 @@ services:
     network_mode: "host"
     image: "paluma.rub.de/panda-ioc"
     tty: true
-    command: /config/iocBoot/iocExample/st.cmd
+    command: ${iocpath}
   archappl:
     container_name: archappl
     hostname: ${hostname}
