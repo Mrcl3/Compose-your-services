@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <memento last_opened_file="/home/cbm/config/archiver.bob" show_menu="true" show_statusbar="true" show_tabs="true" show_toolbar="true">
-    <DockStage_MAIN height="789.0" width="1848.0" x="67.0" y="106.0">
-        <split horizontal="false" pos="0.49846625766871167">
+    <DockStage_MAIN height="789.0" width="1848.0" x="76.0" y="69.0">
+        <split horizontal="false" pos="0.5306748466257669">
             <split pos="0.5">
                 <pane selected="0">
-                    <DockItem_7bdabe18_7036_42eb_a9c7_d587ddf2f4a8 application="probe" pv="CBM:circle:angle"/>
+                    <DockItem_f63596d2_6d9e_4ede_9120_60582e39e69d application="probe" pv="=2*`pv_name`"/>
                 </pane>
                 <pane selected="0">
-                    <DockItem_7353c131_743d_4504_a54a_8a813a977968 application="alarm_area" input_uri="alarm://localhost:29094/CBM"/>
+                    <DockItem_0d0e2063_d77e_494d_a9a2_273f04a7bd89 application="alarm_area" input_uri="alarm://localhost:29094/CBM"/>
                 </pane>
             </split>
             <split pos="0.5">
                 <pane selected="0">
-                    <DockItem_5a5ac345_1f11_4831_a467_cab65fd728b4 COL0="25.0" COL1="240.0" COL2="400.0" COL3="130.0" COL4="130.0" COL5="200.0" COL6="100.0" COL7="130.0" COL8="130.0" DIR="0" POS="0.5" SORT="1" application="alarm_table" input_uri="alarm://localhost:29094/CBM"/>
+                    <DockItem_6269fe3a_e228_4a5a_a96d_984f6597fb6d COL0="25.0" COL1="240.0" COL2="400.0" COL3="130.0" COL4="130.0" COL5="200.0" COL6="100.0" COL7="130.0" COL8="130.0" DIR="0" POS="0.4155844155844156" SORT="1" application="alarm_table" input_uri="alarm://localhost:29094/CBM"/>
                 </pane>
                 <pane selected="0">
-                    <DockItem_6793277f_4d1e_4c87_b4bb_eed496bc657a application="Alarm Log Table"/>
+                    <DockItem_27deeeb8_109f_4c76_bc35_178e70d57373 application="Alarm Log Table"/>
                 </pane>
             </split>
         </split>

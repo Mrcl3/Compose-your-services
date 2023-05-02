@@ -109,16 +109,16 @@ services:
     ports: 
       - "2181:2181"
   ioc:
-    container_name: ${IOC}
+    container_name: exampleioc
     volumes: 
       - "${LOC}/config/:/config"
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
     restart: always
     network_mode: "host"
-    image: "paluma.rub.de/panda-ioc"
+    image: "paluma.rub.de/epics/ioc:2.0.0"
     tty: true
-    command: ${iocpath}
+    command: /config/iocBoot/iocExample/st.cmd
   archappl:
     container_name: archappl
     hostname: ${hostname}

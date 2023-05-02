@@ -1,8 +1,8 @@
-CBM:circle:step
-CBM:circle:period
+CBM:circle:tick
 CBM:circle:angle
 CBM:line:a
 CBM:circle:x
 CBM:circle:y
-CBM:circle:tick
 CBM:line:b
+CBM:circle:step
+CBM:circle:period

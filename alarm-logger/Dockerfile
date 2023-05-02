@@ -13,7 +13,7 @@ RUN git clone https://github.com/vishnubob/wait-for-it.git &&\
 
 # Phoebus alarm logger
 RUN cd /opt && wget https://controlssoftware.sns.ornl.gov/css_phoebus/nightly/alarm-logger.zip &&\
-    unzip alarm-logger.zip && rm -f alarm-logger-4.6.6.zip && mv alarm-logger-4.6.6 alarm-logger
+    unzip alarm-logger.zip && rm -f alarm-logger-4.6.10-SNAPSHOT.zip && mv alarm-logger-4.6.10-SNAPSHOT alarm-logger
 
 COPY create_alarm_template.sh /opt/create_alarm_template.sh
 COPY create_alarm_index.sh    /opt/create_alarm_index.sh
