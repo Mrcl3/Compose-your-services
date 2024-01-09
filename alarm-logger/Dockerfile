@@ -12,8 +12,8 @@ RUN git clone https://github.com/vishnubob/wait-for-it.git &&\
     ln -s /opt/wait-for-it/wait-for-it.sh /bin/wait-for-it
 
 # Phoebus alarm logger
-RUN cd /opt && wget https://controlssoftware.sns.ornl.gov/css_phoebus/nightly/alarm-logger.zip &&\
-    unzip alarm-logger.zip && rm -f alarm-logger-4.6.10-SNAPSHOT.zip && mv alarm-logger-4.6.10-SNAPSHOT alarm-logger
+RUN cd /opt && wget --no-check-certificate https://controlssoftware.sns.ornl.gov/css_phoebus/nightly/alarm-logger.zip &&\
+    unzip alarm-logger.zip && rm -f alarm-logger.zip && mv alarm-logger-4.6.10-SNAPSHOT alarm-logger
 
 COPY create_alarm_template.sh /opt/create_alarm_template.sh
 COPY create_alarm_index.sh    /opt/create_alarm_index.sh

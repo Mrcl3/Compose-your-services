@@ -71,15 +71,16 @@ services:
   phoebus:
     container_name: phoebus
     restart: always
-    hostname: ${hostname}
     depends_on:
       - kafka-setup
       - archappl
+
+
       - web
-      - ioc
+      # - ioc
     environment:
-      - DISPLAY=$DISPLAY
-      - XAUTHORITY=/home/cbm/.Xauthority
+      - DISPLAY=:0
+#      - XAUTHORITY=/home/marcelb/.Xauthority
     expose: 
       - "4918" 
     image: "mbajdel/phoebus"
@@ -94,7 +95,7 @@ services:
 #      - /etc/passwd:/etc/passwd:ro
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-      - "/dev/snd:/dev/snd"
+      - "/dev/snd:s/dev/snd"
     devices:
       - "/dev/dri"
       - "/dev/snd"
@@ -110,15 +111,22 @@ services:
       - "2181:2181"
   ioc:
     container_name: exampleioc
-    volumes: 
-      - "${LOC}/config/:/config"
-      - "/etc/localtime:/etc/localtime:ro"
-      - "/etc/timezone:/etc/timezone:ro"
     restart: always
     network_mode: "host"
-    image: "paluma.rub.de/epics/ioc:2.0.0"
+    image: registry.hzdr.de/hzb/epics/base/ubuntu_20_04:latest
+    working_dir: /opt/epics/
     tty: true
-    command: /config/iocBoot/iocExample/st.cmd
+    stdin_open: true
+    command: >
+      bash -c "
+      mkdir example &&
+      cd example &&
+      makeBaseApp.pl -u CBM -t example example &&
+      makeBaseApp.pl -u CBM -i -p example -t example example &&
+      make &&
+      chmod +x iocBoot/iocexample/st.cmd &&
+      cd iocBoot/iocexample/ &&
+      ./st.cmd"
   archappl:
     container_name: archappl
     hostname: ${hostname}
@@ -191,7 +199,19 @@ services:
       dockerfile: Dockerfile
       args:
         - SUBSYSTEM=${SUBSYSTEM}     
+    restart: alwaysalarm-logger:
+    build:
+      context: ./alarm-logger
+      dockerfile: Dockerfile
+      args:
+        - SUBSYSTEM=${SUBSYSTEM}     
     restart: always
+    hostname: ${hostname}
+    container_name: alarm-logger
+    network_mode: host
+    depends_on:
+      - es
+      - kibana
     hostname: ${hostname}
     container_name: alarm-logger
     network_mode: host
